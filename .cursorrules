@@ -1,0 +1,35 @@
+# Project Overview
+This project is a real-time multiplayer mobile-web dating app called "Blind Match". 
+Language: Hebrew (RTL).
+Tech Stack: React (Vite), Node.js, Express, Socket.io, MongoDB, Tailwind CSS, React Router DOM, Shadcn UI.
+
+# Project Structure (Monorepo)
+- The workspace is strictly divided into two main directories: `/client` (Frontend) and `/server` (Backend).
+- DATA FILE: All game questions are stored in a file named `dating_game.json` located in the ROOT directory of the project (outside of client/server).
+
+# Design & UI Constraints (Applies to /client)
+- MOBILE FIRST: The entire application must be designed strictly for mobile dimensions. Use a wrapper container with `max-w-md mx-auto h-screen overflow-hidden` to simulate mobile view on desktop browsers.
+- RTL DIRECTION: The layout is in Hebrew. Ensure all Tailwind classes use logical properties (e.g., `ms-`, `me-`, `ps-`, `pe-` instead of left/right) and the root HTML has `dir="rtl"`.
+- UI LIBRARY (Shadcn UI): Use Shadcn UI for standard UI elements (Buttons, Dialogs, Cards, Inputs, etc.). 
+  * Instruct the AI to run Shadcn CLI commands inside the `/client` directory.
+  * Place generated UI components in `/client/src/components/ui`.
+  * Use `lucide-react` for all icons.
+- MODERN UI: Use a sleek, dark/modern dating app aesthetic (neon accents, smooth gradients, rounded corners).
+- FULLSCREEN API: Provide a persistent tiny button at the bottom left to toggle native browser fullscreen mode to keep the user focused.
+
+# Code Architecture & React Best Practices (Applies to /client)
+- Use Functional Components and React Hooks exclusively (`useState`, `useEffect`, `useContext`, `useCallback`).
+- Structure the frontend into: `/src/components`, `/src/components/ui`, `/src/pages`, `/src/hooks`, `/src/context`, `/src/assets`.
+- Modularity: Keep components small. Separate the game logic (custom hooks) from the presentation layer (UI components).
+- Tailwind CSS: Rely on utility classes and Shadcn's built-in Tailwind configuration. Avoid writing custom CSS files.
+
+# Game Logic & Real-Time Sync (Socket.io)
+- The game is played in "Rooms". Use Socket.io's built-in room functionality (`socket.join(roomCode)`).
+- Provide live feedback: When Player A votes, Player B's screen must immediately show a "Partner has voted" indicator without revealing the answer.
+- Synced Reveal: Results must only be displayed to BOTH players simultaneously once both have locked in their votes.
+- Question Management: The backend must read the questions from the root `dating_game.json` file. It must ensure a random question is selected from the chosen mode and track it to prevent duplicates within the same session.
+
+# Backend (Applies to /server)
+- Use MVC architecture for the backend if applicable, but keep the Socket logic clean and separated from HTTP routes.
+- The 6-digit code generation must be purely numeric and verified for uniqueness among active rooms.
+- MongoDB is for long-term storage. Keep real-time active game state (current votes, active questions) in-memory or Redis to ensure zero latency during gameplay.
