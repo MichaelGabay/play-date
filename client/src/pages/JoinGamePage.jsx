@@ -121,7 +121,7 @@ export function JoinGamePage() {
               <CardContent className="space-y-4">
                 <div className="rounded-xl bg-background/40 px-4 py-3 text-center">
                   <p className="text-xs text-muted-foreground">קוד חדר</p>
-                  <p className="font-mono text-2xl font-bold tracking-[0.3em] text-primary">
+                  <p dir="ltr" className="font-mono text-2xl font-bold tracking-[0.3em] text-primary">
                     {lobbyInfo.pin}
                   </p>
                 </div>
@@ -204,6 +204,7 @@ export function JoinGamePage() {
                 <Label htmlFor="room-pin">קוד חדר (PIN)</Label>
                 <Input
                   id="room-pin"
+                  dir="ltr"
                   inputMode="numeric"
                   pattern="[0-9]*"
                   placeholder="000000"

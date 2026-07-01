@@ -253,7 +253,10 @@ export function CreateGamePage() {
               <div className="space-y-2">
                 <Label>קוד חדר (PIN)</Label>
                 <div className="flex items-center gap-2">
-                  <div className="flex flex-1 items-center justify-center gap-1 rounded-xl border border-primary/30 bg-primary/5 py-3 font-mono text-2xl font-bold tracking-[0.3em] text-primary">
+                  <div
+                    dir="ltr"
+                    className="flex flex-1 items-center justify-center gap-1 rounded-xl border border-primary/30 bg-primary/5 py-3 font-mono text-2xl font-bold tracking-[0.3em] text-primary"
+                  >
                     {!hasValidName ? (
                       <span className="text-sm font-sans tracking-normal text-muted-foreground">
                         הזינ/י שם תחילה
@@ -261,9 +264,7 @@ export function CreateGamePage() {
                     ) : isCreatingRoom ? (
                       <Loader2 className="size-6 animate-spin" />
                     ) : (
-                      roomPin.split("").map((digit, i) => (
-                        <span key={i}>{digit}</span>
-                      ))
+                      roomPin
                     )}
                   </div>
                   <Button
