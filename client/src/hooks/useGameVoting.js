@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { useSocket } from "@/context/SocketContext"
-import { pickRandomQuestion, withTwoRandomOptions } from "@/data/questions"
+import { pickRandomQuestion, withShuffledOptions } from "@/data/questions"
 import { hapticLight, hapticPartnerTurn, hapticSuccess } from "@/lib/haptics"
 
 /**
@@ -112,7 +112,7 @@ export function useGameVoting({
       return
     }
 
-    const nextQuestion = withTwoRandomOptions(picked)
+    const nextQuestion = withShuffledOptions(picked)
     const updatedAskedIds = [...askedQuestionIds, nextQuestion.id]
     setAskedQuestionIds(updatedAskedIds)
     socket.emit("sendQuestion", { pin, question: nextQuestion })

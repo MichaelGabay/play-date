@@ -24,7 +24,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Separator } from "@/components/ui/separator"
 import { cn } from "@/lib/utils"
 import { GAME_MODES } from "@/data/mockData"
-import { pickRandomQuestion, withTwoRandomOptions } from "@/data/questions"
+import { pickRandomQuestion, withShuffledOptions } from "@/data/questions"
 import { useSocket } from "@/context/SocketContext"
 import { useNewQuestionNavigation } from "@/hooks/useNewQuestionNavigation"
 
@@ -179,7 +179,7 @@ export function CreateGamePage() {
       return
     }
 
-    const question = withTwoRandomOptions(picked)
+    const question = withShuffledOptions(picked)
 
     setAskedQuestionIds((prev) => [...prev, question.id])
     socket.emit("sendQuestion", { pin: roomPin, question })

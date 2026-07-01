@@ -152,7 +152,9 @@ export function GamePage() {
               >
                 <Alert className="border-accent/50 bg-accent/15 text-start shadow-lg shadow-accent/10">
                   <BellRing className="size-4 text-accent" />
-                  <AlertTitle className="text-accent">הצד השני בחר תשובה!</AlertTitle>
+                  <AlertTitle className="text-accent">
+                    הצד השני בחר תשובה!
+                  </AlertTitle>
                   <AlertDescription className="text-foreground/90">
                     הצד השני בחר תשובה, תורך!
                   </AlertDescription>
@@ -217,7 +219,7 @@ export function GamePage() {
                             "active:scale-[0.98]",
                             isSelected &&
                               "border-primary bg-primary/20 shadow-lg shadow-primary/20",
-                            isDisabled && !isSelected && "opacity-50"
+                            isDisabled && !isSelected && "opacity-50",
                           )}
                         >
                           {option}
@@ -260,7 +262,7 @@ export function GamePage() {
                       "border-2 text-center backdrop-blur-sm",
                       results.isMatch
                         ? "border-primary/50 bg-gradient-to-b from-primary/20 to-card/80"
-                        : "border-muted-foreground/30 bg-gradient-to-b from-muted/20 to-card/80"
+                        : "border-muted-foreground/30 bg-gradient-to-b from-muted/20 to-card/80",
                     )}
                   >
                     <CardHeader className="pb-2">
@@ -329,7 +331,10 @@ export function GamePage() {
       </main>
 
       <Dialog open={partnerDisconnected} onOpenChange={() => {}}>
-        <DialogContent showCloseButton={false} className="border-destructive/30">
+        <DialogContent
+          showCloseButton={false}
+          className="border-destructive/30"
+        >
           <DialogHeader>
             <DialogTitle>השותף/ה התנתק/ה</DialogTitle>
             <DialogDescription>
@@ -365,7 +370,9 @@ function ResultRow({ name, choice, isMatch, index }) {
           <div
             className={cn(
               "flex size-10 shrink-0 items-center justify-center rounded-full",
-              isMatch ? "bg-primary/20 text-primary" : "bg-muted text-muted-foreground"
+              isMatch
+                ? "bg-primary/20 text-primary"
+                : "bg-muted text-muted-foreground",
             )}
           >
             <User className="size-4" />

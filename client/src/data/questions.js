@@ -14,11 +14,11 @@ export function getQuestionsByMode(mode) {
  * @param {{ id: number, question: string, options: string[] }} question
  * @returns {{ id: number, question: string, options: string[] }}
  */
-export function withTwoRandomOptions(question) {
+export function withShuffledOptions(question) {
   const shuffled = [...question.options].sort(() => Math.random() - 0.5)
   return {
     ...question,
-    options: shuffled.slice(0, 2),
+    options: shuffled,
   }
 }
 
